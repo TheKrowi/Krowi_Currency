@@ -54,8 +54,8 @@ local formatted = currency:FormatCurrency(1500000, {
 |----------|------------|---------|-------------|
 | `FormatMoney` | `value, options` | string | Formats copper value into gold/silver/copper with custom options |
 | `FormatCurrency` | `value, options` | string | Formats numeric currency value with separators and abbreviations |
-| `CreateCurrencyOptionsMenu` | `parentMenu, menuBuilder, options, L` | void | Generates a submenu for currency abbreviation options |
-| `CreateMoneyOptionsMenu` | `parentMenu, menuBuilder, options, L` | void | Generates a submenu for money formatting options including label, abbreviation, separator, and display settings |
+| `CreateCurrencyOptionsMenu` | `parentMenu, menuBuilder, options` | void | Generates a submenu for currency abbreviation options |
+| `CreateMoneyOptionsMenu` | `parentMenu, menuBuilder, options` | void | Generates a submenu for money formatting options including label, abbreviation, separator, and display settings |
 
 ### Options Table
 
@@ -119,13 +119,12 @@ local thousands = currency:FormatCurrency(5500, {
 local parentMenu = {} -- Your menu system's parent menu
 local menuBuilder = {} -- Your menu builder object with required methods
 local options = {} -- Your addon's options table
-local L = {} -- Localization table
 
-currency:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options, L)
+currency:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
 -- Creates submenu with:
 --   - Currency Abbreviate (None/1k/1m)
 
-currency:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options, L)
+currency:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
 -- Creates submenu with:
 --   - Money Label (None/Text/Icon)
 --   - Money Abbreviate (None/1k/1m)
