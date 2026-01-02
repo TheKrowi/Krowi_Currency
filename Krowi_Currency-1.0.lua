@@ -123,3 +123,38 @@ function lib:FormatCurrency(value, options)
 	quantity = NumToString(quantity, thousandsSeparator, decimalSeparator);
 	return quantity .. abbr;
 end
+
+function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options, L)
+	menuBuilder:CreateTitle(parentMenu, L["Currency Options"]);
+
+	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, L["Currency Abbreviate"]);
+	menuBuilder:CreateRadio(currencyAbbreviate, L["None"], options, {"CurrencyAbbreviate"}, "None");
+	menuBuilder:CreateRadio(currencyAbbreviate, L["1k"], options, {"CurrencyAbbreviate"}, "1k");
+	menuBuilder:CreateRadio(currencyAbbreviate, L["1m"], options, {"CurrencyAbbreviate"}, "1m");
+	menuBuilder:AddChildMenu(parentMenu, currencyAbbreviate);
+end
+
+function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options, L)
+	menuBuilder:CreateTitle(parentMenu, L["Money Options"]);
+
+	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, L["Money Label"]);
+	menuBuilder:CreateRadio(moneyLabel, L["None"], options, {"MoneyLabel"}, "None");
+	menuBuilder:CreateRadio(moneyLabel, L["Text"], options, {"MoneyLabel"}, "Text");
+	menuBuilder:CreateRadio(moneyLabel, L["Icon"], options, {"MoneyLabel"}, "Icon");
+	menuBuilder:AddChildMenu(parentMenu, moneyLabel);
+
+	local moneyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, L["Money Abbreviate"]);
+	menuBuilder:CreateRadio(moneyAbbreviate, L["None"], options, {"MoneyAbbreviate"}, "None");
+	menuBuilder:CreateRadio(moneyAbbreviate, L["1k"], options, {"MoneyAbbreviate"}, "1k");
+	menuBuilder:CreateRadio(moneyAbbreviate, L["1m"], options, {"MoneyAbbreviate"}, "1m");
+	menuBuilder:AddChildMenu(parentMenu, moneyAbbreviate);
+
+	local thousandsSeparator = menuBuilder:CreateSubmenuButton(parentMenu, L["Thousands Separator"]);
+	menuBuilder:CreateRadio(thousandsSeparator, L["Space"], options, {"ThousandsSeparator"}, "Space");
+	menuBuilder:CreateRadio(thousandsSeparator, L["Period"], options, {"ThousandsSeparator"}, "Period");
+	menuBuilder:CreateRadio(thousandsSeparator, L["Comma"], options, {"ThousandsSeparator"}, "Comma");
+	menuBuilder:AddChildMenu(parentMenu, thousandsSeparator);
+
+	menuBuilder:CreateCheckbox(parentMenu, L["Money Gold Only"], options, {"MoneyGoldOnly"});
+	menuBuilder:CreateCheckbox(parentMenu, L["Money Colored"], options, {"MoneyColored"});
+end
