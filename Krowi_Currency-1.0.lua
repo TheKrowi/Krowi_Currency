@@ -12,6 +12,9 @@
     SOFTWARE.
 ]]
 
+---@diagnostic disable: undefined-global
+---@diagnostic disable: cast-local-type
+
 local MAJOR, MINOR = "Krowi_Currency-1.0", 1;
 local lib = LibStub:NewLibrary(MAJOR, MINOR);
 
