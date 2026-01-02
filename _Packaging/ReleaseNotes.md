@@ -4,3 +4,6 @@
 
 ### Changed (1.0.1)
 - Localization errors suppressed
+
+### Fixed (1.0.2)
+- Multi addon library usage errors

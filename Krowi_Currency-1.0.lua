@@ -15,7 +15,6 @@
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable: cast-local-type
 
-local addonName, addon = ...;
 local MAJOR, MINOR = "Krowi_Currency-1.0", 2;
 local lib = LibStub:NewLibrary(MAJOR, MINOR);
 
@@ -23,6 +22,7 @@ if not lib then
 	return;
 end
 
+local addonName, addon = ...;
 addon.L = LibStub("AceLocale-3.0"):GetLocale(addonName);
 
 -- Store version constants
