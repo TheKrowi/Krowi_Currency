@@ -19,5 +19,5 @@ lib.Localization = {};
 local localization = lib.Localization;
 
 function localization.GetDefaultLocale()
-    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency", "enUS", true, true);
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency", "enUS", true, false);
 end

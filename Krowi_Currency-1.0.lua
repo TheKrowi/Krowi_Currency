@@ -124,7 +124,13 @@ function lib:FormatCurrency(value, options)
 	return quantity .. abbr;
 end
 
+function lib:LoadLocale()
+	self.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Currency")
+	lib.LoadLocale = function() end
+end
+
 function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
+	self:LoadLocale()
 	menuBuilder:CreateTitle(parentMenu, self.L["Currency Options"]);
 
 	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Currency Abbreviate"]);
@@ -135,6 +141,7 @@ function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
 end
 
 function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
+	self:LoadLocale()
 	menuBuilder:CreateTitle(parentMenu, self.L["Money Options"]);
 
 	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Money Label"]);
