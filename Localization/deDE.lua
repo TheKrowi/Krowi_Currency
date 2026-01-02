@@ -14,10 +14,10 @@
 
 ---@diagnostic disable: undefined-global
 
-local lib = LibStub("Krowi_Currency-1.0");
-local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency", "deDE");
+local addonName, addon = ...;
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "deDE");
 if not L then return end
-lib.L = L;
+addon.L = L;
 
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --

@@ -15,12 +15,15 @@
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable: cast-local-type
 
-local MAJOR, MINOR = "Krowi_Currency-1.0", 1;
+local addonName, addon = ...;
+local MAJOR, MINOR = "Krowi_Currency-1.0", 2;
 local lib = LibStub:NewLibrary(MAJOR, MINOR);
 
 if not lib then
 	return;
 end
+
+addon.L = LibStub("AceLocale-3.0"):GetLocale(addonName);
 
 -- Store version constants
 lib.MAJOR = MAJOR
@@ -40,11 +43,11 @@ local function GetIconLabels(textureSize)
 	return iconCache[textureSize]
 end
 
-local function AbbreviateValue(value, abbreviateK, abbreviateM, L)
+local function AbbreviateValue(value, abbreviateK, abbreviateM)
 	if abbreviateK and value >= 1000 then
-		return math.floor(value / 1000), L["Thousands Suffix"];
+		return math.floor(value / 1000), addon.L["Thousands Suffix"];
 	elseif abbreviateM and value >= 1000000 then
-		return math.floor(value / 1000000), L["Millions Suffix"];
+		return math.floor(value / 1000000), addon.L["Millions Suffix"];
 	end
 	return value, "";
 end
@@ -100,16 +103,10 @@ local function GetMoneyColors(options)
 	return goldColor, silverColor, copperColor;
 end
 
-function lib:LoadLocale()
-	self.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Currency")
-	lib.LoadLocale = function() end
-end
-
 function lib:FormatMoney(value, options)
-	self:LoadLocale()
 	local thousandsSeparator, decimalSeparator = GetSeparators(options.ThousandsSeparator);
 	local gold, silver, copper, abbr = BreakMoney(value);
-	gold, abbr = AbbreviateValue(gold, options.MoneyAbbreviate == "1k", options.MoneyAbbreviate == "1m", self.L);
+	gold, abbr = AbbreviateValue(gold, options.MoneyAbbreviate == "1k", options.MoneyAbbreviate == "1m");
 	gold = NumToString(gold, thousandsSeparator, decimalSeparator);
 	local goldLabel, silverLabel, copperLabel = GetMoneyLabels(options);
 	local goldColor, silverColor, copperColor = GetMoneyColors(options);
@@ -123,46 +120,43 @@ function lib:FormatMoney(value, options)
 end
 
 function lib:FormatCurrency(value, options)
-	self:LoadLocale()
 	local thousandsSeparator, decimalSeparator = GetSeparators(options.ThousandsSeparator);
-	local quantity, abbr = AbbreviateValue(value, options.CurrencyAbbreviate == "1k", options.CurrencyAbbreviate == "1m", self.L);
+	local quantity, abbr = AbbreviateValue(value, options.CurrencyAbbreviate == "1k", options.CurrencyAbbreviate == "1m");
 	quantity = NumToString(quantity, thousandsSeparator, decimalSeparator);
 	return quantity .. abbr;
 end
 
 function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
-	self:LoadLocale()
-	menuBuilder:CreateTitle(parentMenu, self.L["Currency Options"]);
+	menuBuilder:CreateTitle(parentMenu, addon.L["Currency Options"]);
 
-	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Currency Abbreviate"]);
-	menuBuilder:CreateRadio(currencyAbbreviate, self.L["None"], options, {"CurrencyAbbreviate"}, "None");
-	menuBuilder:CreateRadio(currencyAbbreviate, self.L["1k"], options, {"CurrencyAbbreviate"}, "1k");
-	menuBuilder:CreateRadio(currencyAbbreviate, self.L["1m"], options, {"CurrencyAbbreviate"}, "1m");
+	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, addon.L["Currency Abbreviate"]);
+	menuBuilder:CreateRadio(currencyAbbreviate, addon.L["None"], options, {"CurrencyAbbreviate"}, "None");
+	menuBuilder:CreateRadio(currencyAbbreviate, addon.L["1k"], options, {"CurrencyAbbreviate"}, "1k");
+	menuBuilder:CreateRadio(currencyAbbreviate, addon.L["1m"], options, {"CurrencyAbbreviate"}, "1m");
 	menuBuilder:AddChildMenu(parentMenu, currencyAbbreviate);
 end
 
 function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
-	self:LoadLocale()
-	menuBuilder:CreateTitle(parentMenu, self.L["Money Options"]);
+	menuBuilder:CreateTitle(parentMenu, addon.L["Money Options"]);
 
-	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Money Label"]);
-	menuBuilder:CreateRadio(moneyLabel, self.L["None"], options, {"MoneyLabel"}, "None");
-	menuBuilder:CreateRadio(moneyLabel, self.L["Text"], options, {"MoneyLabel"}, "Text");
-	menuBuilder:CreateRadio(moneyLabel, self.L["Icon"], options, {"MoneyLabel"}, "Icon");
+	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, addon.L["Money Label"]);
+	menuBuilder:CreateRadio(moneyLabel, addon.L["None"], options, {"MoneyLabel"}, "None");
+	menuBuilder:CreateRadio(moneyLabel, addon.L["Text"], options, {"MoneyLabel"}, "Text");
+	menuBuilder:CreateRadio(moneyLabel, addon.L["Icon"], options, {"MoneyLabel"}, "Icon");
 	menuBuilder:AddChildMenu(parentMenu, moneyLabel);
 
-	local moneyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Money Abbreviate"]);
-	menuBuilder:CreateRadio(moneyAbbreviate, self.L["None"], options, {"MoneyAbbreviate"}, "None");
-	menuBuilder:CreateRadio(moneyAbbreviate, self.L["1k"], options, {"MoneyAbbreviate"}, "1k");
-	menuBuilder:CreateRadio(moneyAbbreviate, self.L["1m"], options, {"MoneyAbbreviate"}, "1m");
+	local moneyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, addon.L["Money Abbreviate"]);
+	menuBuilder:CreateRadio(moneyAbbreviate, addon.L["None"], options, {"MoneyAbbreviate"}, "None");
+	menuBuilder:CreateRadio(moneyAbbreviate, addon.L["1k"], options, {"MoneyAbbreviate"}, "1k");
+	menuBuilder:CreateRadio(moneyAbbreviate, addon.L["1m"], options, {"MoneyAbbreviate"}, "1m");
 	menuBuilder:AddChildMenu(parentMenu, moneyAbbreviate);
 
-	local thousandsSeparator = menuBuilder:CreateSubmenuButton(parentMenu, self.L["Thousands Separator"]);
-	menuBuilder:CreateRadio(thousandsSeparator, self.L["Space"], options, {"ThousandsSeparator"}, "Space");
-	menuBuilder:CreateRadio(thousandsSeparator, self.L["Period"], options, {"ThousandsSeparator"}, "Period");
-	menuBuilder:CreateRadio(thousandsSeparator, self.L["Comma"], options, {"ThousandsSeparator"}, "Comma");
+	local thousandsSeparator = menuBuilder:CreateSubmenuButton(parentMenu, addon.L["Thousands Separator"]);
+	menuBuilder:CreateRadio(thousandsSeparator, addon.L["Space"], options, {"ThousandsSeparator"}, "Space");
+	menuBuilder:CreateRadio(thousandsSeparator, addon.L["Period"], options, {"ThousandsSeparator"}, "Period");
+	menuBuilder:CreateRadio(thousandsSeparator, addon.L["Comma"], options, {"ThousandsSeparator"}, "Comma");
 	menuBuilder:AddChildMenu(parentMenu, thousandsSeparator);
 
-	menuBuilder:CreateCheckbox(parentMenu, self.L["Money Gold Only"], options, {"MoneyGoldOnly"});
-	menuBuilder:CreateCheckbox(parentMenu, self.L["Money Colored"], options, {"MoneyColored"});
+	menuBuilder:CreateCheckbox(parentMenu, addon.L["Money Gold Only"], options, {"MoneyGoldOnly"});
+	menuBuilder:CreateCheckbox(parentMenu, addon.L["Money Colored"], options, {"MoneyColored"});
 end

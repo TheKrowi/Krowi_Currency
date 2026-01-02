@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.2 - 2026-01-02
+### Fixed
+- Multi addon library usage errors
+
 ## 1.0.1 - 2026-01-02
 ### Changed
 - Localization errors suppressed
