@@ -9,6 +9,7 @@ A comprehensive currency formatting library for World of Warcraft addon developm
 - **Color Options**: Optional colored currency text matching WoW's visual style
 - **Icon Support**: Display currency with icons or text labels
 - **Flexible Display**: Show gold only or include silver and copper
+- **Menu Generation**: Automatically generate options menus for currency and money settings
 - **LibStub Support**: Standard LibStub library structure for dependency management
 
 ## Usage Examples
@@ -53,6 +54,8 @@ local formatted = currency:FormatCurrency(1500000, {
 |----------|------------|---------|-------------|
 | `FormatMoney` | `value, options` | string | Formats copper value into gold/silver/copper with custom options |
 | `FormatCurrency` | `value, options` | string | Formats numeric currency value with separators and abbreviations |
+| `CreateCurrencyOptionsMenu` | `parentMenu, menuBuilder, options, L` | void | Generates a submenu for currency abbreviation options |
+| `CreateMoneyOptionsMenu` | `parentMenu, menuBuilder, options, L` | void | Generates a submenu for money formatting options including label, abbreviation, separator, and display settings |
 
 ### Options Table
 
@@ -110,6 +113,27 @@ local thousands = currency:FormatCurrency(5500, {
 -- Result: "5k"
 ```
 
+### Menu Generation
+```lua
+-- Create currency options menu (for use with a menu builder system)
+local parentMenu = {} -- Your menu system's parent menu
+local menuBuilder = {} -- Your menu builder object with required methods
+local options = {} -- Your addon's options table
+local L = {} -- Localization table
+
+currency:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options, L)
+-- Creates submenu with:
+--   - Currency Abbreviate (None/1k/1m)
+
+currency:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options, L)
+-- Creates submenu with:
+--   - Money Label (None/Text/Icon)
+--   - Money Abbreviate (None/1k/1m)
+--   - Thousands Separator (Space/Period/Comma)
+--   - Money Gold Only (checkbox)
+--   - Money Colored (checkbox)
+```
+
 ## Use Cases
 - Display player gold in custom UI frames
 - Format auction house prices
@@ -117,6 +141,7 @@ local thousands = currency:FormatCurrency(5500, {
 - Display quest rewards
 - Format currency in chat messages
 - Create custom currency displays with consistent formatting
+- Generate options menus for currency/money formatting settings in your addon
 
 ## Requirements
 - LibStub

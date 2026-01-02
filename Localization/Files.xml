@@ -13,6 +13,7 @@
  -->
 
 <Ui>
-    <Include file="Localization\Files.xml" />
-    <Script file="Krowi_Currency-1.0.lua"/>
+    <Script file="Localization.lua" />
+    <Script file="enUS.lua" />
+    <Script file="GlobalStrings.lua" />
 </Ui>

@@ -1,4 +1,4 @@
-<!--
+--[[
     Copyright (c) 2026 Krowi
 
     All Rights Reserved unless otherwise explicitly stated.
@@ -10,9 +10,14 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
- -->
+]]
 
-<Ui>
-    <Include file="Localization\Files.xml" />
-    <Script file="Krowi_Currency-1.0.lua"/>
-</Ui>
+---@diagnostic disable: undefined-global
+
+local lib = LibStub("Krowi_Currency-1.0");
+lib.Localization = {};
+local localization = lib.Localization;
+
+function localization.GetDefaultLocale()
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency", "enUS", true, true);
+end
