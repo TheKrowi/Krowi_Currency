@@ -22,6 +22,6 @@
 ## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-currency
 ## X-Curse-Project-ID: 1418733
 ## X-Wago: https://addons.wago.io/addons/krowi-currency
-## X-Wago-ID: TBD
+## X-Wago-ID: qGZRroGd
 
 Krowi_Currency-1.0.xml
