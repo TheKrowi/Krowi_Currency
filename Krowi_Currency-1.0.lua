@@ -26,7 +26,6 @@ end
 lib.MAJOR = MAJOR
 lib.MINOR = MINOR
 
--- Icon cache to avoid rebuilding strings
 local iconCache = {}
 local function GetIconLabels(textureSize)
 	if not iconCache[textureSize] then
@@ -41,11 +40,11 @@ local function GetIconLabels(textureSize)
 	return iconCache[textureSize]
 end
 
-local function AbbreviateValue(value, abbreviateK, abbreviateM)
+local function AbbreviateValue(value, abbreviateK, abbreviateM, L)
 	if abbreviateK and value >= 1000 then
-		return math.floor(value / 1000), "k";
+		return math.floor(value / 1000), L["Thousands Suffix"];
 	elseif abbreviateM and value >= 1000000 then
-		return math.floor(value / 1000000), "m";
+		return math.floor(value / 1000000), L["Millions Suffix"];
 	end
 	return value, "";
 end
@@ -101,10 +100,16 @@ local function GetMoneyColors(options)
 	return goldColor, silverColor, copperColor;
 end
 
+function lib:LoadLocale()
+	self.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Currency")
+	lib.LoadLocale = function() end
+end
+
 function lib:FormatMoney(value, options)
+	self:LoadLocale()
 	local thousandsSeparator, decimalSeparator = GetSeparators(options.ThousandsSeparator);
 	local gold, silver, copper, abbr = BreakMoney(value);
-	gold, abbr = AbbreviateValue(gold, options.MoneyAbbreviate == "1k", options.MoneyAbbreviate == "1m");
+	gold, abbr = AbbreviateValue(gold, options.MoneyAbbreviate == "1k", options.MoneyAbbreviate == "1m", self.L);
 	gold = NumToString(gold, thousandsSeparator, decimalSeparator);
 	local goldLabel, silverLabel, copperLabel = GetMoneyLabels(options);
 	local goldColor, silverColor, copperColor = GetMoneyColors(options);
@@ -118,15 +123,11 @@ function lib:FormatMoney(value, options)
 end
 
 function lib:FormatCurrency(value, options)
+	self:LoadLocale()
 	local thousandsSeparator, decimalSeparator = GetSeparators(options.ThousandsSeparator);
-	local quantity, abbr = AbbreviateValue(value, options.CurrencyAbbreviate == "1k", options.CurrencyAbbreviate == "1m");
+	local quantity, abbr = AbbreviateValue(value, options.CurrencyAbbreviate == "1k", options.CurrencyAbbreviate == "1m", self.L);
 	quantity = NumToString(quantity, thousandsSeparator, decimalSeparator);
 	return quantity .. abbr;
-end
-
-function lib:LoadLocale()
-	self.L = LibStub("AceLocale-3.0"):GetLocale("Krowi_Currency")
-	lib.LoadLocale = function() end
 end
 
 function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)

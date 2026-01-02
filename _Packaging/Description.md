@@ -133,6 +133,8 @@ currency:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
 --   - Money Colored (checkbox)
 ```
 
+**Note:** Abbreviations are automatically localized (e.g., "k/m" for English, "T/M" for German, "千/百万" for Chinese).
+
 ## Use Cases
 - Display player gold in custom UI frames
 - Format auction house prices

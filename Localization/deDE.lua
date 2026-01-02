@@ -22,11 +22,14 @@ lib.L = L;
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2025-11-28 08-39-36 ]] --
+-- [[ Exported at 2026-01-02 11-03-56 ]] --
+L["1k"] = "1T"
+L["1m"] = "1M"
 L["Comma"] = "Komma"
 L["Currency Abbreviate"] = "Währung Abkürzen"
 L["Currency Options"] = "Währungsoptionen"
 L["Icon"] = "Symbol"
+L["Millions Suffix"] = "M"
 L["Money Abbreviate"] = "Geld Abkürzen"
 L["Money Colored"] = "Geld Farbig"
 L["Money Gold Only"] = "Nur Gold Anzeigen"
@@ -35,5 +38,6 @@ L["Money Options"] = "Geldoptionen"
 L["None"] = "Keine"
 L["Period"] = "Punkt"
 L["Space"] = "Leerzeichen"
-L["Text"] = "Text"
+L["Text"] = true
 L["Thousands Separator"] = "Tausendertrennzeichen"
+L["Thousands Suffix"] = "T"

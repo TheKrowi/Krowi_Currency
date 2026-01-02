@@ -15,28 +15,29 @@
 ---@diagnostic disable: undefined-global
 
 local lib = LibStub("Krowi_Currency-1.0");
-local L = lib.Localization.GetDefaultLocale();
+local L = LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency", "zhCN");
+if not L then return end
 lib.L = L;
 
 -- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-02 11-03-56 ]] --
-L["1k"] = true
-L["1m"] = true
-L["Comma"] = true
-L["Currency Abbreviate"] = true
-L["Currency Options"] = true
-L["Icon"] = true
-L["Millions Suffix"] = "m"
-L["Money Abbreviate"] = true
-L["Money Colored"] = true
-L["Money Gold Only"] = true
-L["Money Label"] = true
-L["Money Options"] = true
-L["None"] = true
-L["Period"] = true
-L["Space"] = true
-L["Text"] = true
-L["Thousands Separator"] = true
-L["Thousands Suffix"] = "k"
+-- [[ Exported at 2026-01-02 11-04-01 ]] --
+L["1k"] = "1千"
+L["1m"] = "1百万"
+L["Comma"] = "逗号"
+L["Currency Abbreviate"] = "缩写货币"
+L["Currency Options"] = "货币选项"
+L["Icon"] = "图标"
+L["Millions Suffix"] = "百万"
+L["Money Abbreviate"] = "缩写金币"
+L["Money Colored"] = "彩色金币"
+L["Money Gold Only"] = "仅显示金币"
+L["Money Label"] = "金币标签"
+L["Money Options"] = "金币选项"
+L["None"] = "无"
+L["Period"] = "句号"
+L["Space"] = "空格"
+L["Text"] = "文本"
+L["Thousands Separator"] = "千位分隔符"
+L["Thousands Suffix"] = "千"
