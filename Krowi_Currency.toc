@@ -14,7 +14,7 @@
 
 ## Interface: 110207, 50503, 11508
 ## Title: Krowi's |cFF1D92C2Currency|r
-## Version: 1.0.0
+## Version: 1.0.1
 ## Author: Krowi
 ## Notes: A comprehensive currency formatting library providing flexible formatting for in-game currency and other currency values
 ## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
