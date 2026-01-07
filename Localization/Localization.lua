@@ -14,10 +14,24 @@
 
 ---@diagnostic disable: undefined-global
 
-local addonName, addon = ...;
-addon.Localization = {};
-local localization = addon.Localization;
+local lib = LibStub("Krowi_Currency-1.0", true)
+if not lib then	return end
+if lib.Localization then return end
 
+lib.Localization = {}
+local localization = lib.Localization
+
+local localeIsLoaded, defaultLocale = {}, 'enUS'
 function localization.GetDefaultLocale()
-    return LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true, true);
+    if localeIsLoaded[defaultLocale] then return end
+
+    localeIsLoaded[defaultLocale] = true
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency-1.0", defaultLocale, true, true)
+end
+
+function localization.GetLocale(locale)
+    if localeIsLoaded[locale] then return end
+
+    localeIsLoaded[locale] = true
+    return LibStub("AceLocale-3.0"):NewLocale("Krowi_Currency-1.0", locale)
 end
