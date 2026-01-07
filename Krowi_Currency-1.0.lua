@@ -125,9 +125,11 @@ function lib:FormatCurrency(value, options)
 	return quantity .. abbr
 end
 
-function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
+function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options, addTitle)
 	local L = GetLocale()
-	menuBuilder:CreateTitle(parentMenu, L["Currency Options"])
+	if addTitle ~= false then
+		menuBuilder:CreateTitle(parentMenu, L["Currency Options"])
+	end
 
 	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, L["Currency Abbreviate"])
 	menuBuilder:CreateRadio(currencyAbbreviate, L["None"], options, {"CurrencyAbbreviate"}, "None")
@@ -136,9 +138,11 @@ function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options)
 	menuBuilder:AddChildMenu(parentMenu, currencyAbbreviate)
 end
 
-function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
+function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options, addTitle)
 	local L = GetLocale()
-	menuBuilder:CreateTitle(parentMenu, L["Money Options"])
+	if addTitle ~= false then
+		menuBuilder:CreateTitle(parentMenu, L["Money Options"])
+	end
 
 	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, L["Money Label"])
 	menuBuilder:CreateRadio(moneyLabel, L["None"], options, {"MoneyLabel"}, "None")

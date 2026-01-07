@@ -52,10 +52,10 @@ local formatted = currency:FormatCurrency(1500000, {
 
 | Function | Parameters | Returns | Description |
 |----------|------------|---------|-------------|
-| `FormatMoney` | `value, options` | string | Formats copper value into gold/silver/copper with custom options |
-| `FormatCurrency` | `value, options` | string | Formats numeric currency value with separators and abbreviations |
-| `CreateCurrencyOptionsMenu` | `parentMenu, menuBuilder, options` | void | Generates a submenu for currency abbreviation options |
-| `CreateMoneyOptionsMenu` | `parentMenu, menuBuilder, options` | void | Generates a submenu for money formatting options including label, abbreviation, separator, and display settings |
+| `FormatMoney` | `value, options` | string | Formats copper value into gold/silver/copper with custom options and localized abbreviations |
+| `FormatCurrency` | `value, options` | string | Formats numeric currency value with separators and localized abbreviations |
+| `CreateCurrencyOptionsMenu` | `parentMenu, menuBuilder, options, addTitle` | void | Generates a submenu for currency abbreviation options. Set `addTitle` to false to skip title creation (defaults to true) |
+| `CreateMoneyOptionsMenu` | `parentMenu, menuBuilder, options, addTitle` | void | Generates a submenu for money formatting options including label, abbreviation, separator, and display settings. Set `addTitle` to false to skip title creation (defaults to true) |
 
 ### Options Table
 

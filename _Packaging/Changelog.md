@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 1.0.3 - 2026-01-07
 ### Added
 - Menu generation functions now automatically load locale
+- Optional `addTitle` parameter to `CreateCurrencyOptionsMenu` and `CreateMoneyOptionsMenu` (defaults to true)
 
 ### Changed
 - Menu function parameter order: `options` moved to first parameter
