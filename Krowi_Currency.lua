@@ -1,31 +1,13 @@
 --[[
     Copyright (c) 2026 Krowi
-
-    All Rights Reserved unless otherwise explicitly stated.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+    Licensed under the terms of the LICENSE file in this repository.
 ]]
 
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable: cast-local-type
 
-local MAJOR, MINOR = "Krowi_Currency-1.0", 3
-local lib = LibStub:NewLibrary(MAJOR, MINOR)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Currency-2', 0)
 if not lib then	return end
-
-local localeCache
-local function GetLocale()
-	if not localeCache then
-		localeCache = LibStub("AceLocale-3.0"):GetLocale("Krowi_Currency-1.0", true)
-	end
-	return localeCache
-end
 
 local iconCache = {}
 local function GetIconLabels(textureSize)
@@ -42,11 +24,10 @@ local function GetIconLabels(textureSize)
 end
 
 local function AbbreviateValue(value, abbreviateK, abbreviateM)
-	local L = GetLocale()
 	if abbreviateK and value >= 1000 then
-		return math.floor(value / 1000), L["Thousands Suffix"]
+		return math.floor(value / 1000), lib.lib.L["Thousands Suffix"]
 	elseif abbreviateM and value >= 1000000 then
-		return math.floor(value / 1000000), L["Millions Suffix"]
+		return math.floor(value / 1000000), lib.lib.L["Millions Suffix"]
 	end
 	return value, ""
 end
@@ -126,42 +107,40 @@ function lib:FormatCurrency(value, options)
 end
 
 function lib:CreateCurrencyOptionsMenu(parentMenu, menuBuilder, options, addTitle)
-	local L = GetLocale()
 	if addTitle ~= false then
-		menuBuilder:CreateTitle(parentMenu, L["Currency Options"])
+		menuBuilder:CreateTitle(parentMenu, lib.L["Currency Options"])
 	end
 
-	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, L["Currency Abbreviate"])
-	menuBuilder:CreateRadio(currencyAbbreviate, L["None"], options, {"CurrencyAbbreviate"}, "None")
-	menuBuilder:CreateRadio(currencyAbbreviate, L["1k"], options, {"CurrencyAbbreviate"}, "1k")
-	menuBuilder:CreateRadio(currencyAbbreviate, L["1m"], options, {"CurrencyAbbreviate"}, "1m")
+	local currencyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, lib.L["Currency Abbreviate"])
+	menuBuilder:CreateRadio(currencyAbbreviate, lib.L["None"], options, {"CurrencyAbbreviate"}, "None")
+	menuBuilder:CreateRadio(currencyAbbreviate, lib.L["1k"], options, {"CurrencyAbbreviate"}, "1k")
+	menuBuilder:CreateRadio(currencyAbbreviate, lib.L["1m"], options, {"CurrencyAbbreviate"}, "1m")
 	menuBuilder:AddChildMenu(parentMenu, currencyAbbreviate)
 end
 
 function lib:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options, addTitle)
-	local L = GetLocale()
 	if addTitle ~= false then
-		menuBuilder:CreateTitle(parentMenu, L["Money Options"])
+		menuBuilder:CreateTitle(parentMenu, lib.L["Money Options"])
 	end
 
-	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, L["Money Label"])
-	menuBuilder:CreateRadio(moneyLabel, L["None"], options, {"MoneyLabel"}, "None")
-	menuBuilder:CreateRadio(moneyLabel, L["Text"], options, {"MoneyLabel"}, "Text")
-	menuBuilder:CreateRadio(moneyLabel, L["Icon"], options, {"MoneyLabel"}, "Icon")
+	local moneyLabel = menuBuilder:CreateSubmenuButton(parentMenu, lib.L["Money Label"])
+	menuBuilder:CreateRadio(moneyLabel, lib.L["None"], options, {"MoneyLabel"}, "None")
+	menuBuilder:CreateRadio(moneyLabel, lib.L["Text"], options, {"MoneyLabel"}, "Text")
+	menuBuilder:CreateRadio(moneyLabel, lib.L["Icon"], options, {"MoneyLabel"}, "Icon")
 	menuBuilder:AddChildMenu(parentMenu, moneyLabel)
 
-	local moneyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, L["Money Abbreviate"])
-	menuBuilder:CreateRadio(moneyAbbreviate, L["None"], options, {"MoneyAbbreviate"}, "None")
-	menuBuilder:CreateRadio(moneyAbbreviate, L["1k"], options, {"MoneyAbbreviate"}, "1k")
-	menuBuilder:CreateRadio(moneyAbbreviate, L["1m"], options, {"MoneyAbbreviate"}, "1m")
+	local moneyAbbreviate = menuBuilder:CreateSubmenuButton(parentMenu, lib.L["Money Abbreviate"])
+	menuBuilder:CreateRadio(moneyAbbreviate, lib.L["None"], options, {"MoneyAbbreviate"}, "None")
+	menuBuilder:CreateRadio(moneyAbbreviate, lib.L["1k"], options, {"MoneyAbbreviate"}, "1k")
+	menuBuilder:CreateRadio(moneyAbbreviate, lib.L["1m"], options, {"MoneyAbbreviate"}, "1m")
 	menuBuilder:AddChildMenu(parentMenu, moneyAbbreviate)
 
-	local thousandsSeparator = menuBuilder:CreateSubmenuButton(parentMenu, L["Thousands Separator"])
-	menuBuilder:CreateRadio(thousandsSeparator, L["Space"], options, {"ThousandsSeparator"}, "Space")
-	menuBuilder:CreateRadio(thousandsSeparator, L["Period"], options, {"ThousandsSeparator"}, "Period")
-	menuBuilder:CreateRadio(thousandsSeparator, L["Comma"], options, {"ThousandsSeparator"}, "Comma")
+	local thousandsSeparator = menuBuilder:CreateSubmenuButton(parentMenu, lib.L["Thousands Separator"])
+	menuBuilder:CreateRadio(thousandsSeparator, lib.L["Space"], options, {"ThousandsSeparator"}, "Space")
+	menuBuilder:CreateRadio(thousandsSeparator, lib.L["Period"], options, {"ThousandsSeparator"}, "Period")
+	menuBuilder:CreateRadio(thousandsSeparator, lib.L["Comma"], options, {"ThousandsSeparator"}, "Comma")
 	menuBuilder:AddChildMenu(parentMenu, thousandsSeparator)
 
-	menuBuilder:CreateCheckbox(parentMenu, L["Money Gold Only"], options, {"MoneyGoldOnly"})
-	menuBuilder:CreateCheckbox(parentMenu, L["Money Colored"], options, {"MoneyColored"})
+	menuBuilder:CreateCheckbox(parentMenu, lib.L["Money Gold Only"], options, {"MoneyGoldOnly"})
+	menuBuilder:CreateCheckbox(parentMenu, lib.L["Money Colored"], options, {"MoneyColored"})
 end
