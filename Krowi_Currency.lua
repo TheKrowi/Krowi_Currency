@@ -6,7 +6,7 @@
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable: cast-local-type
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Currency-2', 0)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Currency_2', 0)
 if not lib then	return end
 
 local iconCache = {}
@@ -25,9 +25,9 @@ end
 
 local function AbbreviateValue(value, abbreviateK, abbreviateM)
 	if abbreviateK and value >= 1000 then
-		return math.floor(value / 1000), lib.lib.L["Thousands Suffix"]
+		return math.floor(value / 1000), lib.L["Thousands Suffix"]
 	elseif abbreviateM and value >= 1000000 then
-		return math.floor(value / 1000000), lib.lib.L["Millions Suffix"]
+		return math.floor(value / 1000000), lib.L["Millions Suffix"]
 	end
 	return value, ""
 end
@@ -67,7 +67,7 @@ end
 
 local function GetMoneyLabels(options)
 	if options.MoneyLabel == "Text" then
-		return options.GoldLabel or "g", options.SilverLabel or "s", options.CopperLabel or "c"
+		return lib.L["Gold Label"], lib.L["Silver Label"], lib.L["Copper Label"]
 	elseif options.MoneyLabel == "Icon" then
 		local textureSize = options.TextureSize or 14
 		local icons = GetIconLabels(textureSize)

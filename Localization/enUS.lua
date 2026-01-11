@@ -34,3 +34,6 @@ L["Space"] = true
 L["Text"] = true
 L["Thousands Separator"] = true
 L["Thousands Suffix"] = "k"
+L["Gold Label"] = "g"
+L["Silver Label"] = "s"
+L["Copper Label"] = "c"
