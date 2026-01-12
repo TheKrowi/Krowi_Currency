@@ -10,9 +10,7 @@ if not lib then	return end
 
 local L = lib.Localization.NewLocale('ptBR')
 if not L then return end
-lib.L = L
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-01-02 11-04-00 ]] --
@@ -34,3 +32,6 @@ L["Space"] = "Espaço"
 L["Text"] = "Texto"
 L["Thousands Separator"] = "Separador de Milhares"
 L["Thousands Suffix"] = "k"
+L["Gold Label"] = "o"
+L["Silver Label"] = "p"
+L["Copper Label"] = "c"

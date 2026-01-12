@@ -10,9 +10,7 @@ if not lib then	return end
 
 local L = lib.Localization.NewLocale('itIT')
 if not L then return end
-lib.L = L
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-01-02 11-03-59 ]] --
@@ -34,3 +32,6 @@ L["Space"] = "Spazio"
 L["Text"] = "Testo"
 L["Thousands Separator"] = "Separatore Migliaia"
 L["Thousands Suffix"] = "k"
+L["Gold Label"] = "o"
+L["Silver Label"] = "a"
+L["Copper Label"] = "r"

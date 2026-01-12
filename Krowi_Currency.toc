@@ -8,11 +8,8 @@
 ## Version: 2.0
 ## Author: Krowi
 ## Notes: A comprehensive currency formatting library providing flexible formatting for in-game currency and other currency values
-## X-Discord-Invite-Link: https://discord.gg/mdBFQJYeQZ
-## X-Discord-Server-Name: Krowi's Addons
-## X-CurseForge: https://www.curseforge.com/wow/addons/krowi-currency
-## X-Curse-Project-ID: 1418733
-## X-Wago: https://addons.wago.io/addons/krowi-currency
+## X-Slug: krowi-currency
+## X-CurseForge-ID: 1418733
 ## X-Wago-ID: qGZRroGd
 
 Krowi_Currency.xml

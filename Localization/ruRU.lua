@@ -10,9 +10,7 @@ if not lib then	return end
 
 local L = lib.Localization.NewLocale('ruRU')
 if not L then return end
-lib.L = L
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-01-02 11-04-00 ]] --
@@ -34,3 +32,6 @@ L["Space"] = "Пробел"
 L["Text"] = "Текст"
 L["Thousands Separator"] = "Разделитель Тысяч"
 L["Thousands Suffix"] = "т"
+L["Gold Label"] = "з"
+L["Silver Label"] = "с"
+L["Copper Label"] = "м"

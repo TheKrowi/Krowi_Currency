@@ -10,9 +10,7 @@ if not lib then	return end
 
 local L = lib.Localization.NewLocale('koKR')
 if not L then return end
-lib.L = L
 
--- [[ https://legacy.curseforge.com/wow/addons/krowi-currency/localization ]] --
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
 -- [[ Exported at 2026-01-02 11-03-59 ]] --
@@ -34,3 +32,6 @@ L["Space"] = "공백"
 L["Text"] = "텍스트"
 L["Thousands Separator"] = "천 단위 구분자"
 L["Thousands Suffix"] = "천"
+L["Gold Label"] = "골"
+L["Silver Label"] = "은"
+L["Copper Label"] = "동"
