@@ -6,7 +6,10 @@
 ---@diagnostic disable: undefined-global
 ---@diagnostic disable: cast-local-type
 
-local lib = KROWI_LIBMAN:NewLibrary('Krowi_Currency_2', 0)
+local lib = KROWI_LIBMAN:NewLibrary('Krowi_Currency_2', 0, {
+    SetCurrent = true,
+    InitLocalization = true,
+})
 if not lib then	return end
 
 local iconCache = {}
