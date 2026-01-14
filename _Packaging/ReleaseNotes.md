@@ -1,11 +1,20 @@
-### Added (1.0.3)
-- Menu generation functions now automatically load locale
-- Optional `addTitle` parameter to `CreateCurrencyOptionsMenu` and `CreateMoneyOptionsMenu` (defaults to true)
+### Added
+- Currency label localizations for Gold, Silver, and Copper in all supported languages:
+  - English (enUS): g, s, c
+  - German (deDE): g, s, k (Kupfer)
+  - Spanish (esES, esMX): o, p, c (Oro, Plata, Cobre)
+  - French (frFR): o, a, c (Or, Argent, Cuivre)
+  - Italian (itIT): o, a, r (Oro, Argento, Rame)
+  - Korean (koKR): 골, 은, 동
+  - Portuguese (ptBR): o, p, c (Ouro, Prata, Cobre)
+  - Russian (ruRU): з, с, м (Золото, Серебро, Медь)
+  - Chinese Simplified (zhCN): 金, 银, 铜
+  - Chinese Traditional (zhTW): 金, 銀, 銅
 
-### Changed (1.0.3)
-- Menu function parameter order: `options` moved to first parameter
-- Abbreviations are now language-aware and use appropriate suffixes per locale
-- Code style improvements: removed semicolons from Lua files for consistency
-
-### Fixed (1.0.3)
-- Locale caching to prevent repeated LibStub calls
+### Changed
+- Refactored localization loading to use `KROWI_LIBMAN:GetCurrentLibrary()` instead of LibStub
+- Updated locale methods from `GetDefaultLocale()` to `NewDefaultLocale()` and `NewLocale()`
+- Renamed `PostLocalization.lua` to `Shared.lua` for better clarity
+- Removed redundant `lib.L = L` assignments from individual locale files
+- Simplified copyright notice across all files
+- Streamlined addon metadata fields in TOC file (replaced individual links with `X-Slug`, `X-CurseForge-ID`, and `X-Wago-ID` format)

@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 2.0 - 2026-01-12
+## 2.0 - 2026-01-14
 ### Added
 - Currency label localizations for Gold, Silver, and Copper in all supported languages:
   - English (enUS): g, s, c

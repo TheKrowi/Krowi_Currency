@@ -13,12 +13,14 @@ if not L then return end
 
 -- [[ Everything after this line is automatically generated from CurseForge and is not meant for manual edit - SOURCETOKEN - AUTOGENTOKEN ]] --
 
--- [[ Exported at 2026-01-02 11-03-56 ]] --
+-- [[ Exported at 2026-01-14 16-25-18 ]] --
 L["1k"] = "1T"
 L["1m"] = "1M"
 L["Comma"] = "Komma"
+L["Copper Label"] = "k"
 L["Currency Abbreviate"] = "Währung Abkürzen"
 L["Currency Options"] = "Währungsoptionen"
+L["Gold Label"] = "g"
 L["Icon"] = "Symbol"
 L["Millions Suffix"] = "M"
 L["Money Abbreviate"] = "Geld Abkürzen"
@@ -28,10 +30,8 @@ L["Money Label"] = "Geldbeschriftung"
 L["Money Options"] = "Geldoptionen"
 L["None"] = "Keine"
 L["Period"] = "Punkt"
+L["Silver Label"] = "s"
 L["Space"] = "Leerzeichen"
 L["Text"] = true
 L["Thousands Separator"] = "Tausendertrennzeichen"
 L["Thousands Suffix"] = "T"
-L["Gold Label"] = "g"
-L["Silver Label"] = "s"
-L["Copper Label"] = "k"

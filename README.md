@@ -1,4 +1,4 @@
-![Retail](https://img.shields.io/badge/Retail-11.2.7-008833?style=for-the-badge) ![Mists](https://img.shields.io/badge/Mists-5.5.3-28ae7e?style=for-the-badge) ![Classic](https://img.shields.io/badge/Classic-1.15.8-c39361?style=for-the-badge)<br>
+![Midnight](https://img.shields.io/badge/Midnight-12.0.0-a335ee?style=for-the-badge) ![Retail](https://img.shields.io/badge/Retail-11.2.7-008833?style=for-the-badge) ![Mists](https://img.shields.io/badge/Mists-5.5.3-28ae7e?style=for-the-badge) ![TBC](https://img.shields.io/badge/TBC-2.5.5-62c907?style=for-the-badge) ![Classic](https://img.shields.io/badge/Classic-1.15.8-c39361?style=for-the-badge)<br>
 [![CurseForge](https://img.shields.io/badge/curseforge-download-F16436?style=for-the-badge&logo=curseforge&logoColor=white)](https://www.curseforge.com/wow/addons/krowi-currency) [![Wago](https://img.shields.io/badge/Wago-Download-c1272d?style=for-the-badge)](https://addons.wago.io/addons/krowi-currency)<br>
 [![Discord](https://img.shields.io/badge/discord-join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/mdBFQJYeQZ) [![PayPal](https://img.shields.io/badge/paypal-donate-002991.svg?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=9QEDV37APQ6YJ)
 
@@ -6,21 +6,21 @@ A comprehensive currency formatting library for World of Warcraft addon developm
 
 ## Features
 
-### Currency Formatting (`Krowi_Currency-1.0`)
+### Currency Formatting (`Krowi_Currency_2`)
 - **Money Formatting**: Format copper values into gold, silver, and copper with customizable display options
 - **Custom Separators**: Support for comma, period, or space thousands separators
-- **Abbreviations**: Abbreviate large values with "k" (thousands) or "m" (millions)
+- **Abbreviations**: Abbreviate large values with "k" (thousands) or "m" (millions) - automatically localized
 - **Color Options**: Optional colored currency text matching WoW's visual style
-- **Icon Support**: Display currency with icons or text labels
+- **Icon Support**: Display currency with WoW's official coin icons or text labels
 - **Flexible Display**: Show gold only or include silver and copper
 - **Menu Generation**: Automatically generate options menus for currency and money settings
-- **LibStub Support**: Standard LibStub library structure for dependency management
+- **Krowi LibMan**: Integrated with Krowi's Library Manager for dependency management
 
 ## Usage Examples
 
 ### Basic Setup
 ```lua
-local currency = LibStub("Krowi_Currency-1.0")
+local currency = KROWI_LIBMAN:GetLibrary('Krowi_Currency_2')
 ```
 
 ### Format Money
@@ -30,14 +30,12 @@ local formatted = currency:FormatMoney(1234567, {
     ThousandsSeparator = "Comma",      -- "Comma", "Period", "Space", or ""
     MoneyAbbreviate = "None",          -- "None", "1k", or "1m"
     MoneyColored = true,               -- Colorize currency
-    MoneyLabel = "Text",               -- "Text" or "Icon"
+    MoneyLabel = "Text",               -- "None", "Text", or "Icon"
     MoneyGoldOnly = false,             -- Show only gold
-    GoldLabel = "g",                   -- Custom gold label (if using text)
-    SilverLabel = "s",                 -- Custom silver label (if using text)
-    CopperLabel = "c",                 -- Custom copper label (if using text)
     TextureSize = 14                   -- Icon size (if using icons)
 })
 -- Result: "|cffffd100123g|r |cffe6e6e645s|r |cffc8602c67c|r" (colored)
+-- Note: Labels are automatically localized based on MoneyLabel setting
 ```
 
 ### Format Currency
@@ -69,11 +67,8 @@ local formatted = currency:FormatCurrency(1500000, {
 | `ThousandsSeparator` | string | "Comma", "Period", "Space", "" | Thousands separator style |
 | `MoneyAbbreviate` | string | "None", "1k", "1m" | Abbreviation level |
 | `MoneyColored` | boolean | true/false | Whether to colorize currency |
-| `MoneyLabel` | string | "Text", "Icon" | Label display type |
+| `MoneyLabel` | string | "None", "Text", "Icon" | Label display type (localized automatically) |
 | `MoneyGoldOnly` | boolean | true/false | Show only gold portion |
-| `GoldLabel` | string | any | Custom gold text label (default: "g") |
-| `SilverLabel` | string | any | Custom silver text label (default: "s") |
-| `CopperLabel` | string | any | Custom copper text label (default: "c") |
 | `TextureSize` | number | any | Icon texture size (default: 14) |
 
 #### FormatCurrency Options
@@ -100,7 +95,7 @@ local withIcons = currency:FormatMoney(1234567, {
     MoneyLabel = "Icon",
     TextureSize = 16
 })
--- Result: Icons for gold, silver, and copper
+-- Result: WoW's official gold, silver, and copper icons with values
 ```
 
 #### Abbreviated Currency
@@ -149,4 +144,4 @@ currency:CreateMoneyOptionsMenu(parentMenu, menuBuilder, options)
 - Generate options menus for currency/money formatting settings in your addon
 
 ## Requirements
-- LibStub
+- Krowi's Library Manager (KROWI_LIBMAN)
