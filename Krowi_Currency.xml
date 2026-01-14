@@ -4,6 +4,6 @@
  -->
 
 <Ui>
-    <Script file="Krowi_Currency.lua"/>
-    <Include file="Localization\Files.xml" />
+    <Script file='Krowi_Currency.lua'/>
+    <Include file='Localization\Files.xml' />
 </Ui>
